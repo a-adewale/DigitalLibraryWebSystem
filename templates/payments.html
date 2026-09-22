@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block page_name %}payments{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">Paystack test mode</span><h1>Fine Payments</h1><p>Open a secure test checkout and verify completed fine payments.</p></div></header>
+<section class="panel">
+  <div class="panel-heading"><h2>Outstanding fines</h2><button type="button" class="button secondary" id="refreshPayments">↻ Refresh</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Member</th><th>Email</th><th>Book</th><th>Returned</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="fineRows"></tbody></table></div>
+</section>
+<section class="panel">
+  <div class="panel-heading"><div><h2>Payment history</h2><p>Verify pending transactions after completing Paystack checkout.</p></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Reference</th><th>Member</th><th>Book</th><th>Amount</th><th>Status</th><th>Payment date</th><th>Action</th></tr></thead><tbody id="paymentRows"></tbody></table></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/payments.js') }}"></script>{% endblock %}

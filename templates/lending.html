@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block page_name %}lending{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">Circulation</span><h1>Borrow and Return</h1><p>Issue available books and process returns.</p></div></header>
+<section class="panel">
+  <div class="panel-heading"><div><h2>Issue a book</h2><p>Default loan period: {{ loan_period_days }} days</p></div></div>
+  <form id="loanForm" class="form-grid">
+    <label>Member<select id="loanMember" required></select></label>
+    <label>Available book<select id="loanBook" required></select></label>
+    <label>Borrowed date<input type="date" id="borrowedDate" required></label>
+    <label>Due date<input type="date" id="dueDate" required></label>
+    <button class="button primary" id="loanSubmit" type="submit">Lend book</button>
+  </form>
+</section>
+<section class="panel">
+  <div class="panel-heading"><h2>Current loans</h2><button type="button" class="button secondary" id="refreshLoans">↻ Refresh</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Member No.</th><th>Member</th><th>Book</th><th>Borrowed</th><th>Due</th><th>Status</th><th>Action</th></tr></thead><tbody id="loanRows"></tbody></table></div>
+</section>
+{% endblock %}
+{% block scripts %}<script>window.LOAN_PERIOD_DAYS={{ loan_period_days }};</script><script src="{{ url_for('static', filename='js/lending.js') }}"></script>{% endblock %}

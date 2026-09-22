@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_name %}overdue{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">Attention required</span><h1>Overdue Tracking</h1><p>Fine rate: ₦{{ "{:,}".format(daily_fine) }} for each overdue day.</p></div></header>
+<section class="panel">
+  <div class="panel-heading"><h2>Current overdue loans</h2><button type="button" class="button secondary" id="refreshOverdue">↻ Refresh</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Member</th><th>Email</th><th>Phone</th><th>Book</th><th>Due</th><th>Days late</th><th>Current fine</th></tr></thead><tbody id="overdueRows"></tbody></table></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/overdue.js') }}"></script>{% endblock %}

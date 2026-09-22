@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block page_name %}dashboard{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div><span class="eyebrow">Overview</span><h1>Library Dashboard</h1><p>Welcome back, {{ logged_in_user.full_name }}.</p></div>
+</header>
+<section class="stats-grid">
+  <article><strong>{{ stats.book_titles }}</strong><span>Book titles</span></article>
+  <article><strong>{{ stats.available_books }}</strong><span>Available copies</span></article>
+  <article><strong>{{ stats.active_members }}</strong><span>Active members</span></article>
+  <article><strong>{{ stats.active_loans }}</strong><span>Books on loan</span></article>
+  <article class="danger"><strong>{{ stats.overdue_loans }}</strong><span>Overdue</span></article>
+</section>
+<section class="quick-actions" aria-label="Quick actions">
+  <a href="{{ url_for('books_page') }}"><span>＋</span><strong>Add a book</strong><small>Grow the catalogue</small></a>
+  <a href="{{ url_for('members_page') }}"><span>♙</span><strong>Register member</strong><small>Create a library account</small></a>
+  <a href="{{ url_for('lending_page') }}"><span>⇄</span><strong>Issue or return</strong><small>Manage active loans</small></a>
+  <a href="{{ url_for('payments_page') }}"><span>₦</span><strong>Fine payments</strong><small>Open Paystack checkout</small></a>
+</section>
+<section class="panel">
+  <div class="panel-heading"><div><h2>Recent borrowing activity</h2><p>The latest transactions recorded by the system.</p></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Member</th><th>Book</th><th>Borrowed</th><th>Due</th><th>Status</th></tr></thead>
+  <tbody>{% for loan in recent_loans %}<tr><td>#{{ loan.loan_id }}</td><td>{{ loan.full_name }}</td><td>{{ loan.title }}</td><td>{{ loan.borrowed_date }}</td><td>{{ loan.due_date }}</td><td><span class="status {{ loan.status|lower }}">{{ loan.status }}</span></td></tr>{% else %}<tr><td colspan="6" class="empty">No borrowing activity yet.</td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endblock %}

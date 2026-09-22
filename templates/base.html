@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | Digital Library</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="{% block page_name %}{% endblock %}">
+  {% if logged_in_user %}
+  <aside class="sidebar">
+    <a class="brand" href="{{ url_for('dashboard_page') }}">
+      <span class="brand-mark">DL</span>
+      <span>Digital Library</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a data-nav="dashboard" href="{{ url_for('dashboard_page') }}"><span>⌂</span>Dashboard</a>
+      <a data-nav="books" href="{{ url_for('books_page') }}"><span>▤</span>Books</a>
+      <a data-nav="members" href="{{ url_for('members_page') }}"><span>♙</span>Members</a>
+      <a data-nav="lending" href="{{ url_for('lending_page') }}"><span>⇄</span>Borrow & Return</a>
+      <a data-nav="history" href="{{ url_for('history_page') }}"><span>◷</span>History</a>
+      <a data-nav="overdue" href="{{ url_for('overdue_page') }}"><span>!</span>Overdue</a>
+      <a data-nav="payments" href="{{ url_for('payments_page') }}"><span>₦</span>Fine Payments</a>
+    </nav>
+    <div class="sidebar-footer">
+      <small>Signed in as</small>
+      <strong>{{ logged_in_user.full_name }}</strong>
+      <a href="{{ url_for('logout') }}">Log out</a>
+    </div>
+  </aside>
+  {% endif %}
+
+  <main class="{% if logged_in_user %}main-content{% else %}login-layout{% endif %}">
+    {% block content %}{% endblock %}
+  </main>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <div id="appModal" class="modal-backdrop" aria-hidden="true">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalClose" class="modal-close" type="button" aria-label="Close dialog">×</button>
+      <div id="modalIcon" class="modal-icon">?</div>
+      <h2 id="modalTitle">Confirm action</h2>
+      <p id="modalMessage"></p>
+      <label id="modalInputWrap" class="modal-input-wrap">
+        <span id="modalInputLabel">Value</span>
+        <input id="modalInput">
+      </label>
+      <div class="modal-actions">
+        <button id="modalCancel" class="button secondary" type="button">Cancel</button>
+        <button id="modalConfirm" class="button primary" type="button">Continue</button>
+      </div>
+    </section>
+  </div>
+  <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block page_name %}books{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">Catalogue</span><h1>Books and Categories</h1><p>Add, search, edit and remove catalogue records.</p></div></header>
+<section class="panel">
+  <div class="panel-heading"><div><h2>Book details</h2><p>Complete the fields below to add or update a title.</p></div><button type="button" class="button secondary" id="clearBook">Clear form</button></div>
+  <form id="bookForm" class="form-grid">
+    <input type="hidden" id="bookId">
+    <label>ISBN<input id="isbn" required></label><label>Title<input id="bookTitle" required></label><label>Author<input id="author" required></label>
+    <label>Category<select id="category" required></select></label><label>Publication year<input id="year" type="number" min="1000" max="2100"></label><label>Total copies<input id="copies" type="number" min="1" value="1" required></label>
+    <button class="button primary" type="submit" id="bookSubmit">Save book</button><button class="button secondary" type="button" id="addCategory">＋ Add category</button>
+  </form>
+</section>
+<section class="panel"><div class="panel-heading"><div><h2>Book catalogue</h2><p>Search by title, author, ISBN or category.</p></div><input id="bookSearch" class="search" placeholder="Search catalogue"></div><div class="table-wrap"><table><thead><tr><th>ISBN</th><th>Title</th><th>Author</th><th>Category</th><th>Year</th><th>Total</th><th>Available</th><th>Actions</th></tr></thead><tbody id="bookRows"></tbody></table></div></section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/books.js') }}"></script>{% endblock %}

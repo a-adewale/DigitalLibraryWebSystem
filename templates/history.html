@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_name %}history{% endblock %}
+{% block content %}
+<header class="page-header"><div><span class="eyebrow">Records</span><h1>Borrowing History</h1><p>Search, filter and export all lending records.</p></div></header>
+<section class="panel">
+  <div class="panel-heading controls"><input id="historySearch" class="search" placeholder="Search member or book"><select id="historyStatus"><option>All</option><option>Borrowed</option><option>Overdue</option><option>Returned</option></select><button type="button" class="button secondary" id="exportHistory">⇩ Export CSV</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Member No.</th><th>Member</th><th>Book</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Status</th><th>Fine</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/history.js') }}"></script>{% endblock %}
