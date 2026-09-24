@@ -253,6 +253,31 @@ td strong { color: #243b53; }
   .login-layout { min-height: 100dvh; padding: 18px 13px; }
   .login-card { padding: 27px 20px; border-radius: 17px; }
 }
+
+.creator-name {
+  margin: 2px 0 8px !important;
+  color: var(--teal-700) !important;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-name {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-name strong {
+  font-size: 1rem;
+}
+
+.brand-name small {
+  color: #9fb7c9;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
 @media (max-width: 380px) {
   .mobile-brand small { max-width: 150px; }
   .quick-actions { grid-template-columns: 1fr 1fr; }

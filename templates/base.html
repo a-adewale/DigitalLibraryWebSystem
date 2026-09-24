@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }} | Digital Library</title>
+  <title>{{ title }} | Digital Library by ToucheCodes</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body data-page="{% block page_name %}{% endblock %}">
@@ -11,7 +11,10 @@
   <header class="mobile-header">
     <a class="mobile-brand" href="{{ url_for('dashboard_page') }}">
       <span class="brand-mark">DL</span>
-      <span><strong>Digital Library</strong><small>{{ title }}</small></span>
+      <span>
+        <strong>Digital Library</strong>
+        <small>by ToucheCodes · {{ title }}</small>
+      </span>
     </a>
     <button id="mobileMenuToggle" class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -25,7 +28,10 @@
     </div>
     <a class="brand" href="{{ url_for('dashboard_page') }}">
       <span class="brand-mark">DL</span>
-      <span>Digital Library</span>
+      <span class="brand-name">
+        <strong>Digital Library</strong>
+        <small>by ToucheCodes</small>
+      </span>
     </a>
     <nav aria-label="Main navigation">
       <a data-nav="dashboard" href="{{ url_for('dashboard_page') }}"><span>⌂</span>Dashboard</a>
