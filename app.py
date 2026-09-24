@@ -20,6 +20,11 @@ paystack_service.load_environment()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "change-this-development-key")
 
+database.initialise_database()
+
+if os.getenv("SEED_DEMO_DATA", "0") == "1":
+    database.seed_demo_data()
+
 
 def login_required(function):
     """Redirect browser pages to login and reject unauthenticated API calls."""
