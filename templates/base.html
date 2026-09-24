@@ -8,7 +8,21 @@
 </head>
 <body data-page="{% block page_name %}{% endblock %}">
   {% if logged_in_user %}
-  <aside class="sidebar">
+  <header class="mobile-header">
+    <a class="mobile-brand" href="{{ url_for('dashboard_page') }}">
+      <span class="brand-mark">DL</span>
+      <span><strong>Digital Library</strong><small>{{ title }}</small></span>
+    </a>
+    <button id="mobileMenuToggle" class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+  <aside id="sidebar" class="sidebar" aria-label="Application navigation">
+    <div class="sidebar-mobile-heading">
+      <span>Navigation</span>
+      <button id="mobileMenuClose" type="button" aria-label="Close navigation">×</button>
+    </div>
     <a class="brand" href="{{ url_for('dashboard_page') }}">
       <span class="brand-mark">DL</span>
       <span>Digital Library</span>
@@ -25,7 +39,7 @@
     <div class="sidebar-footer">
       <small>Signed in as</small>
       <strong>{{ logged_in_user.full_name }}</strong>
-      <a href="{{ url_for('logout') }}">Log out</a>
+      <a class="logout-link" href="{{ url_for('logout') }}">Log out</a>
     </div>
   </aside>
   {% endif %}
